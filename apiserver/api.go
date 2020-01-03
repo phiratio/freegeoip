@@ -323,7 +323,11 @@ func (rr *responseRecord) String() string {
 // openDB opens and returns the IP database file or URL.
 func openDB(c *Config) (*freegeoip.DB, error) {
 	// This is a paid product. Get the updates URL.
-	if len(c.UserID) > 0 && len(c.LicenseKey) > 0 {
+	if len(c.CustomUpdatesURL) > 0 {
+		c.DB = c.CustomUpdatesURL
+		log.Println("Using updates URL:", c.DB)
+	}
+	if len(c.CustomUpdatesURL) <= 0 && len(c.UserID) > 0 && len(c.LicenseKey) > 0 {
 		var err error
 		c.DB, err = freegeoip.MaxMindUpdateURL(
 			c.UpdatesHost,

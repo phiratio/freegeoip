@@ -51,6 +51,7 @@ type Config struct {
 	RateLimitInterval   time.Duration `envconfig:"QUOTA_INTERVAL"`
 	InternalServerAddr  string        `envconfig:"INTERNAL_SERVER"`
 	UpdatesHost         string        `envconfig:"UPDATES_HOST"`
+	CustomUpdatesURL    string        `envconfig:"CUSTOM_UPDATES_URL"`
 	LicenseKey          string        `envconfig:"LICENSE_KEY"`
 	UserID              string        `envconfig:"USER_ID"`
 	ProductID           string        `envconfig:"PRODUCT_ID"`
@@ -130,6 +131,7 @@ func (c *Config) AddFlags(fs *flag.FlagSet) {
 	fs.DurationVar(&c.RateLimitInterval, "quota-interval", c.RateLimitInterval, "Quota expiration interval, per source IP querying the API")
 	fs.StringVar(&c.InternalServerAddr, "internal-server", c.InternalServerAddr, "Address in form of ip:port to listen on for metrics and pprof")
 	fs.StringVar(&c.UpdatesHost, "updates-host", c.UpdatesHost, "MaxMind Updates Host")
+	fs.StringVar(&c.CustomUpdatesURL, "custom-updates-url", c.CustomUpdatesURL, "Custom URL to fetch Updates")
 	fs.StringVar(&c.LicenseKey, "license-key", c.LicenseKey, "MaxMind License Key (requires user-id)")
 	fs.StringVar(&c.UserID, "user-id", c.UserID, "MaxMind User ID (requires license-key)")
 	fs.StringVar(&c.ProductID, "product-id", c.ProductID, "MaxMind Product ID (e.g GeoIP2-City)")
