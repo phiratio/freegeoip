@@ -11,7 +11,7 @@ RUN \
 	apt-get clean && rm -rf /var/lib/apt/lists/* && \
 	useradd -ms /bin/bash freegeoip
 
-ARG INITIAL_DATABASE_URL
+ARG INITIAL_DATABASE_URL="https://www.dropbox.com/s/wqi977lxspyo7jj/GeoLite2-City.mmdb.gz?dl=1"
 ENV FREEGEOIP_CUSTOM_UPDATES_URL=${INITIAL_DATABASE_URL}
 
 COPY entrypoint.sh /entrypoint.sh
